@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import TextLimitation from './TextLimitation'
+import HandleCardClick from './Cardclick'
 
 const Newcard1 = props => {
     console.log("props",props)
@@ -8,9 +9,9 @@ const Newcard1 = props => {
     const{value}=props    
     
   return (
-    <div className='card1-cantainer bg-image hover-zoom'>
+    <div className='card1-cantainer'>
          <div key={value.url}>
-          <div className="card" style={{ width: '18rem' }}>
+          <div className="card" style={{ width: '18rem' }} onClick={() => HandleCardClick(value.url)}>
             <img src={value.urlToImage} className="card-img-top" alt="Loading"  />
             <div className="card-body">
               <h5 className="card-title">{TextLimitation(value.title,20)}</h5>
