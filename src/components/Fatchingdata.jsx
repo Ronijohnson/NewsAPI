@@ -2,18 +2,25 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Newcard1 from './Newcard1';
 import Searchbar from './searchbar';
+
 function Fatchingdata() {
-  const [news, setnews] = useState([]);
+  const [news, setNews] = useState([]);
 
   useEffect(() => {
-    topheadlines();
+    const storedNews = localStorage.getItem('news');
+    if (storedNews) {
+      setNews(JSON.parse(storedNews));
+    } else {
+      topHeadlines();
+    }
   }, []);
 
-  const topheadlines = () => {
+  const topHeadlines = () => {
     axios
       .get("https://newsapi.org/v2/top-headlines?country=us&apiKey=b8f907efe58c4869aec3aad56a6f859d")
       .then(resp => {
-        setnews(resp.data.articles); // Assuming 'articles' is the array within the response data
+        setNews(resp.data.articles);
+        localStorage.setItem('news', JSON.stringify(resp.data.articles));
         console.log(resp.data.articles);
       })
       .catch(error => {
@@ -23,14 +30,12 @@ function Fatchingdata() {
 
   return (
     <>
-     <Searchbar setnews={setnews} news={news}/>
-    <div className='main-container'>
-         {/* <Searchbar setnews={setnews} news={news}/> */}
-      {news.map(value => (
-       <Newcard1 value={value}/>
-      ))}
-     
-    </div>
+      <Searchbar setnews={setNews} news={news} />
+      <div className='main-container'>
+        {news.map(value => (
+          <Newcard1 value={value} key={value.id} />
+        ))}
+      </div>
     </>
   );
 }

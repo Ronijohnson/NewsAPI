@@ -35,11 +35,14 @@ function SearchBar(props) {
   };
 console.log("news",news)
   return (
+    <>
+    {/* <h1>World WildNews</h1> */}
     <form onSubmit={handleSubmit}>
       <input className='inputdata'type="text"onChange={handleInputChange}placeholder="Search..."
       />
       <button className='search-button' type="submit">Search </button>
     </form>
+    </>
   );
 }
 

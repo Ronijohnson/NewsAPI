@@ -1,3 +1,6 @@
+body{
+  background-image:url(../public/bacimg.jpg.jpg);
+}
 .main-container{
   flex-wrap: wrap;
     display: flex;
@@ -22,7 +25,8 @@ form{
 }
 .card{
   margin: 2rem;
-  height: auto;
+  height: 29rem;
+
   border-radius: 9px;
   /* border: 2px solid gray; */
   /* box-shadow: 7px 7px #dee2e6; */
@@ -62,4 +66,7 @@ body{
 body{
   background-color: #d6dce2;
 }
+/* h1{
+  color: #d6dce2;
+} */
 
